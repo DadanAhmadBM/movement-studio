@@ -31,7 +31,7 @@ export default function Services() {
           transition={{ duration: 0.5 }}
         >
           <span
-            className="px-4 py-1.5 text-xs font-bold tracking-widest text-black rounded whitespace-nowrap"
+            className="font-mono px-4 py-1.5 text-xs font-bold tracking-widest text-black rounded whitespace-nowrap"
             style={{ backgroundColor: '#C8FF00' }}
           >
             OUR SERVICES

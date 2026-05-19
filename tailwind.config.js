@@ -4,12 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        lime: { DEFAULT: '#C8FF00', dark: '#3a4a00' },
+        lime: { DEFAULT: '#C8F04E', dark: '#3a4a00' },
       },
       fontFamily: {
-        sans: ['Barlow', 'sans-serif'],
-        display: ['Barlow Condensed', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['Satoshi', 'sans-serif'],
+        display: ['Satoshi', 'sans-serif'],
+        mono: ['Chivo Mono', 'monospace'],
       },
     },
   },

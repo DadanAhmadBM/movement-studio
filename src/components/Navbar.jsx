@@ -33,7 +33,7 @@ export default function Navbar() {
           <a
             key={item}
             href={`#${item.toLowerCase()}`}
-            className="text-[#cccccc] text-xs font-semibold tracking-widest hover:text-white transition-colors duration-200"
+            className="text-[#cccccc] font-mono text-xs font-semibold tracking-widest hover:text-white transition-colors duration-200"
           >
             {item}
           </a>
@@ -45,7 +45,7 @@ export default function Navbar() {
         href="#contact"
         className="flex items-center group overflow-hidden rounded-md"
       >
-        <div className="bg-[#1c1c1c] text-white/90 text-xs font-semibold tracking-widest px-6 py-3 transition-colors group-hover:bg-[#252525]">
+        <div className="bg-[#1c1c1c] text-white/90 font-mono text-xs font-semibold tracking-widest px-6 py-3 transition-colors group-hover:bg-[#252525]">
           CONTACT
         </div>
         <div className="bg-[#C8FF00] text-black px-4 py-3 transition-colors group-hover:bg-[#d4ff33] flex items-center justify-center">
