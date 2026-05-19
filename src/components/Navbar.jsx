@@ -1,18 +1,31 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import logoImage from '../assets/logo-image.png'
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-10 py-8"
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-10 transition-all duration-300 ${
+        scrolled ? 'py-4 bg-black/75 backdrop-blur-md' : 'py-8 bg-transparent'
+      }`}
     >
       {/* Logo */}
-      <div className="flex items-center gap-3">
+      <a href="#home" className="flex items-center gap-3 cursor-pointer">
         <img src={logoImage} alt="Movement Logo" className="h-8 object-contain" />
-      </div>
+      </a>
 
       {/* Nav Links */}
       <div className="flex items-center gap-14">

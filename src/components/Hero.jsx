@@ -35,51 +35,51 @@ export default function Hero() {
       <div className="absolute top-1/3 left-1/4 w-[50vw] h-[50vh] bg-[#C8FF00] opacity-[0.08] blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
 
       {/* --- MAIN CONTENT (Tengah) --- */}
-      {/* Margin top disesuaikan karena Navbar sudah dipisah */}
-      <div className="relative z-10 flex flex-col md:flex-row w-full mt-10 md:mt-24">
+      {/* Wrapper ini (flex-1 & justify-center) akan otomatis meletakkan konten tepat di tengah layar vertikal */}
+      <div className="relative z-10 flex-1 flex flex-col justify-center w-full">
+        <div className="flex flex-col md:flex-row w-full max-w-6xl mx-auto items-center">
 
-        {/* Left Column: Clock & Agency Label */}
-        <div className="w-full md:w-1/2 flex flex-col justify-between min-h-[160px] md:min-h-[220px]">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="font-mono text-sm text-white/70 tracking-widest"
-          >
-            {time}
-          </motion.p>
+          {/* Left Column: Clock & Agency Label */}
+          <div className="w-full md:w-1/2 flex flex-col gap-10 md:gap-14">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="font-mono text-[13px] text-white/70 tracking-[0.15em]"
+            >
+              {time}
+            </motion.p>
 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              <p className="font-mono text-[11px] text-white/60 tracking-widest uppercase leading-loose">
+                WEB DEVELOPMENT AGENCY —<br />
+                BASED IN BANDUNG, INDONESIA
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Description */}
           <motion.div
+            className="w-full md:w-1/2 flex items-center mt-12 md:mt-0 md:pl-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            transition={{ delay: 0.6, duration: 0.9 }}
           >
-            <p className="font-mono text-[11px] text-white/60 tracking-widest uppercase leading-loose">
-              WEB DEVELOPMENT AGENCY —<br />
-              BASED IN BANDUNG, INDONESIA
+            <p className="text-xl md:text-[22px] font-medium leading-[1.4] max-w-xl text-white">
+              <span className="text-[#a3a3a3]">Movement studio</span>
+              {' '}helps startups, modern businesses,{' '}
+              and creative brands build high-performance websites with{' '}
+              <span className="text-[#a3a3a3]">premium</span>
+              {' '}visuals and scalable user experiences.
             </p>
           </motion.div>
+
         </div>
-
-        {/* Right Column: Description */}
-        <motion.div
-          className="w-full md:w-1/2 flex items-center mt-12 md:mt-0"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.9 }}
-        >
-          <p className="text-xl md:text-[22px] font-medium leading-snug max-w-xl text-white">
-            <span className="text-[#a3a3a3]">Movement studio</span>
-            {' '}helps startups, modern businesses,{' '}
-            and creative brands build high-performance websites with{' '}
-            <span className="text-[#a3a3a3]">premium</span>
-            {' '}visuals and scalable user experiences.
-          </p>
-        </motion.div>
       </div>
-
-      {/* Spacer: Mendorong teks "Movement" agar menempel di bagian bawah layar */}
-      <div className="flex-1" />
 
       {/* --- BOTTOM CONTENT (Headline Image) --- */}
       <motion.div
