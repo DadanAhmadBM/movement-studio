@@ -86,7 +86,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 -mx-6 md:-mx-12 -mb-6 mt-auto"
+        className="relative z-10 -mx-6 md:-mx-12 mt-auto mb-4"
       >
         <img src={headlineHero} alt="Movement Headline" className="w-full h-auto block mx-4" />
       </motion.div>
