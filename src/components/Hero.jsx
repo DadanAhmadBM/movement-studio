@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 import bgImage from '../assets/bg-image.png'
+import headlineHero from '../assets/headline-hero.svg'
 
 export default function Hero() {
   const [time, setTime] = useState('')
@@ -22,21 +23,21 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative w-full min-h-screen overflow-hidden flex flex-col bg-[#080808] px-6 md:px-12 pb-6 pt-32 font-sans">
-      
+
       {/* Background Image & Overlay */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none bg-cover bg-center bg-no-repeat opacity-90"
         style={{ backgroundImage: `url(${bgImage})` }}
       />
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-[#080808]/90" />
-      
+
       {/* Fallback Green Glow (Opsional) */}
       <div className="absolute top-1/3 left-1/4 w-[50vw] h-[50vh] bg-[#C8FF00] opacity-[0.08] blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
 
       {/* --- MAIN CONTENT (Tengah) --- */}
       {/* Margin top disesuaikan karena Navbar sudah dipisah */}
       <div className="relative z-10 flex flex-col md:flex-row w-full mt-10 md:mt-24">
-        
+
         {/* Left Column: Clock & Agency Label */}
         <div className="w-full md:w-1/2 flex flex-col justify-between min-h-[160px] md:min-h-[220px]">
           <motion.p
@@ -80,34 +81,14 @@ export default function Hero() {
       {/* Spacer: Mendorong teks "Movement" agar menempel di bagian bawah layar */}
       <div className="flex-1" />
 
-      {/* --- BOTTOM CONTENT (Teks Besar) --- */}
+      {/* --- BOTTOM CONTENT (Headline Image) --- */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full pb-2"
+        className="relative z-10 -mx-6 md:-mx-12 -mb-6 mt-auto"
       >
-        <h1
-          className="font-sans font-black text-white leading-none select-none tracking-tighter"
-          style={{ fontSize: 'clamp(70px, 15vw, 240px)' }}
-        >
-          Movement
-          <span
-            className="inline-flex items-center justify-center"
-            style={{
-              width: 'clamp(50px, 9vw, 130px)',
-              height: 'clamp(50px, 9vw, 130px)',
-              fontSize: 'clamp(28px, 5vw, 75px)',
-              color: '#C8FF00',
-              verticalAlign: 'baseline',
-              marginLeft: 'clamp(8px, 1vw, 16px)',
-              fontFamily: 'sans-serif',
-              fontWeight: '700'
-            }}
-          >
-            ©
-          </span>
-        </h1>
+        <img src={headlineHero} alt="Movement Headline" className="w-full h-auto block mx-4" />
       </motion.div>
 
     </section>
