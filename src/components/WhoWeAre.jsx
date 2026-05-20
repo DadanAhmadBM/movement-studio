@@ -1,8 +1,13 @@
-import { motion, useScroll, useTransform, useInView as useFramerInView } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useInView as useFramerInView,
+} from "framer-motion";
 import { useRef, useEffect } from "react";
 
 // Mengimpor file video dari folder assets Anda
-import videoSrc from "../assets/Scene.mp4"; 
+import videoSrc from "../assets/Scene.mp4";
 
 export default function WhoWeAre() {
   const containerRef = useRef(null);
@@ -43,7 +48,7 @@ export default function WhoWeAre() {
       {/* --- BADGE --- */}
       <div className="mb-8">
         <span
-          className="font-mono px-3 py-1 text-[11px] font-bold tracking-widest text-black uppercase rounded-[3px]"
+          className="font-mono px-3 py-2 text-[14px] font-medium tracking-widest text-black uppercase rounded-[3px]"
           style={{ backgroundColor: "#C8F04E" }}
         >
           Who We Are
