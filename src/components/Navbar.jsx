@@ -48,7 +48,7 @@ export default function Navbar() {
         <div className="bg-[#1c1c1c] text-white/90 font-mono text-xs font-semibold tracking-widest px-6 py-3 transition-colors group-hover:bg-[#252525]">
           CONTACT
         </div>
-        <div className="bg-[#C8FF00] text-black px-4 py-3 transition-colors group-hover:bg-[#d4ff33] flex items-center justify-center">
+        <div className="bg-[#C8F04E] text-black px-4 py-3 transition-colors group-hover:bg-[#d4ff33] flex items-center justify-center">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>

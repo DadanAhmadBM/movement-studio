@@ -1,7 +1,8 @@
 import { motion, useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
+import gsap from 'gsap'
 
-// 1. Array Proyek (Tambahkan properti 'image' dengan placeholder atau URL gambar Anda)
+// 1. Array Proyek 
 const projects = [
   { name: 'Nova Energy', tags: ['Energy', 'Startup'], image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop' },
   { name: 'Pulse Band', tags: ['Music', 'Event'], image: 'https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?q=80&w=1000&auto=format&fit=crop' },
@@ -13,11 +14,36 @@ const projects = [
 
 export default function OurWorks() {
   const ref = useRef(null)
+  const imgRef = useRef(null) // Referensi baru khusus untuk GSAP
   const isInView = useInView(ref, { once: true, margin: '-80px' })
   const [activeIndex, setActiveIndex] = useState(0)
 
+  // 2. GSAP Glitch Blur Effect
+  useEffect(() => {
+    if (!imgRef.current) return
+
+    const img = imgRef.current
+    const tl = gsap.timeline()
+
+    // Mematikan animasi yang sedang berjalan jika user melakukan hover terlalu cepat
+    gsap.killTweensOf(img)
+
+    // Rangkaian animasi Glitch Blur
+    tl.fromTo(img,
+      // Kondisi Awal: Blur tebal, sedikit terang (brightness), membesar, dan miring (skew)
+      { filter: 'blur(25px) brightness(1.5)', opacity: 0, scale: 1.15, skewX: 12, x: 20 },
+      // Masuk secara cepat
+      { filter: 'blur(0px) brightness(1)', opacity: 1, scale: 1, skewX: 0, x: 0, duration: 0.25, ease: 'power4.out' }
+    )
+    // Efek "Stutter" / Glitch susulan yang sangat cepat
+    .to(img, { x: -8, skewX: -4, filter: 'blur(6px)', duration: 0.04 })
+    .to(img, { x: 8, skewX: 4, filter: 'blur(3px)', duration: 0.04 })
+    .to(img, { x: 0, skewX: 0, filter: 'blur(0px)', duration: 0.04 })
+
+  }, [activeIndex]) // Akan terpicu setiap kali activeIndex (hover teks) berubah
+
   return (
-    <section id="works" ref={ref} className="w-full bg-[#080808] px-6 md:px-16 py-24 font-sans">
+    <section id="works" ref={ref} className="w-full bg-[#0a0a0a] px-16 py-24 font-sans">
       <div className="max-w-[1200px] mx-2">
         
         {/* --- HEADER SECTION --- */}
@@ -31,7 +57,7 @@ export default function OurWorks() {
           >
             <span
               className="font-mono px-3 py-1.5 text-[11px] font-bold tracking-[0.15em] text-black uppercase rounded-[3px]"
-              style={{ backgroundColor: '#C8FF00' }}
+              style={{ backgroundColor: '#C8F04E' }}
             >
               Our Works
             </span>
@@ -50,7 +76,6 @@ export default function OurWorks() {
         </div>
 
         {/* --- CONTENT SECTION --- */}
-        {/* Menggunakan gap-[120px] sesuai permintaan */}
         <div className="flex flex-col xl:flex-row items-start gap-12 xl:gap-[120px]">
           
           {/* LEFT: Dynamic Image (572x572) */}
@@ -58,17 +83,14 @@ export default function OurWorks() {
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.2 }}
-            // Mengatur ukuran absolut 572px, namun tetap responsif di layar kecil (w-full max-w-...)
             className="w-full max-w-[572px] aspect-square rounded-[20px] overflow-hidden relative shrink-0 border border-white/10"
             style={{ backgroundColor: '#141414' }}
           >
-            <motion.img
-              key={activeIndex} // Kunci untuk memicu animasi saat index berubah
+            {/* Tag img standar (bukan motion.img lagi) karena animasi di-handle oleh GSAP */}
+            <img
+              ref={imgRef}
               src={projects[activeIndex].image}
               alt={projects[activeIndex].name}
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
               className="w-full h-full object-cover"
             />
           </motion.div>
@@ -83,14 +105,14 @@ export default function OurWorks() {
             {projects.map((project, i) => (
               <button
                 key={project.name}
-                onMouseEnter={() => setActiveIndex(i)} // Mengubah gambar saat di-hover
-                onClick={() => setActiveIndex(i)} // Fallback untuk mobile/tablet
+                onMouseEnter={() => setActiveIndex(i)} 
+                onClick={() => setActiveIndex(i)} 
                 className="text-left font-medium transition-colors duration-300 block"
                 style={{
-                  fontSize: 'clamp(36px, 4vw, 56px)', // Ukuran font besar menyesuaikan desain
-                  color: i === activeIndex ? '#C8FF00' : '#8A8A8A', // Hijau saat aktif, abu-abu saat pasif
+                  fontSize: 'clamp(36px, 4vw, 56px)', 
+                  color: i === activeIndex ? '#C8F04E' : '#8A8A8A', 
                   letterSpacing: '-0.03em',
-                  lineHeight: '1.2',
+                  lineHeight: '1.1',
                 }}
               >
                 {project.name}
