@@ -1,27 +1,33 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 
+// 1. IMPORT GAMBAR DARI FOLDER ASSETS DI SINI
+// Pastikan path (../assets/...) dan ekstensi file (.png, .jpg, .svg) sesuai dengan nama file Anda
+import imgLandingPage from "../assets/landing-page-image.png"; 
+import imgBusinessWeb from "../assets/business-website-image.png"; 
+import imgCustomWeb from "../assets/custom-website-image.png";     
+
 const services = [
   {
     title: "Landing Page",
     description:
       "High-converting landing pages designed to capture attention, communicate value clearly, and drive action.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&auto=format&fit=crop",
+    // 2. MASUKKAN VARIABEL IMPORT KE SINI (TANPA TANDA KUTIP)
+    image: imgLandingPage, 
   },
   {
     title: "Business Website",
     description:
       "Professional business websites that strengthen credibility and create a modern online presence.",
-    image:
-      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=400&auto=format&fit=crop",
+    // 2. MASUKKAN VARIABEL IMPORT KE SINI (TANPA TANDA KUTIP)
+    image: imgBusinessWeb,
   },
   {
     title: "Custom Website",
     description:
       "Fully customized web solutions built around your business needs and more features.",
-    image:
-      "https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=400&auto=format&fit=crop",
+    // 2. MASUKKAN VARIABEL IMPORT KE SINI (TANPA TANDA KUTIP)
+    image: imgCustomWeb,
   },
 ];
 
@@ -65,7 +71,6 @@ export default function Services() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 + i * 0.1 }}
-            // Interaksi Hover
             onMouseEnter={() => setHoveredIndex(i)}
             onMouseLeave={() => setHoveredIndex(null)}
             className="relative cursor-pointer border-t transition-colors duration-300 min-h-[160px]"
@@ -77,9 +82,6 @@ export default function Services() {
               backgroundColor: hoveredIndex === i ? "#ffffff" : "transparent",
             }}
           >
-            {/* Layout 3 Kolom yang presisi (w-full). 
-              Masing-masing kolom menggunakan lebar w-1/3 (33.3%) 
-            */}
             <div className="flex items-center px-16 py-10 w-full h-full relative z-10">
               {/* Kolom 1 (Kiri): Service name */}
               <div className="w-1/3 flex justify-start pr-4">
@@ -109,14 +111,14 @@ export default function Services() {
                 </p>
               </div>
 
-              {/* Kolom 3 (Kanan): Spacer untuk menjaga batas area */}
+              {/* Kolom 3 (Kanan): Spacer */}
               <div className="w-1/3 flex justify-end pl-4">
-                <div className="w-[200px]" />
+                <div className="w-[260px]" />
               </div>
             </div>
 
             {/* Gambar Placeholder (Floating & Absolut ditengah baris) */}
-            <div className="absolute right-8 top-1/2 -translate-y-1/2 z-50 pointer-events-none">
+            <div className="absolute right-64 top-1/2 -translate-y-1/2 z-50 pointer-events-none">
               <AnimatePresence>
                 {hoveredIndex === i && (
                   <motion.div
@@ -130,9 +132,10 @@ export default function Services() {
                       opacity: { duration: 0.3 },
                       y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
                     }}
-                    className="w-[200px] h-[210px] rounded-[10px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
+                    className="w-[260px] h-[270px] rounded-[12px] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.4)]"
                   >
                     <img
+                      // Pemanggilan svc.image akan otomatis memuat file lokal yang di-import
                       src={svc.image}
                       alt={svc.title}
                       className="w-full h-full object-cover"

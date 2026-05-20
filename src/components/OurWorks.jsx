@@ -2,7 +2,6 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import gsap from 'gsap'
 
-// 1. Array Proyek 
 const projects = [
   { name: 'Nova Energy', tags: ['Energy', 'Startup'], image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop' },
   { name: 'Pulse Band', tags: ['Music', 'Event'], image: 'https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?q=80&w=1000&auto=format&fit=crop' },
@@ -12,35 +11,84 @@ const projects = [
   { name: 'Aurahome', tags: ['Interior', 'Property'], image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1000&auto=format&fit=crop' },
 ]
 
+// --- KOMPONEN SLOT MACHINE TEXT DUAL-LAYER ---
+const CasinoText = ({ text, isActive, isFaded }) => {
+  return (
+    <motion.span
+      animate={{
+        color: isActive ? "#C8F04E" : isFaded ? "rgba(255,255,255,0.25)" : "#FFFFFF",
+      }}
+      transition={{ duration: 0.3 }}
+      // overflow-hidden menutupi huruf yang berada di luar area baris
+      className="inline-flex overflow-hidden relative"
+      style={{ verticalAlign: "bottom" }}
+    >
+      {text.split("").map((char, i) => (
+        <span key={i} className="relative inline-block whitespace-pre">
+          
+          {/* LAPISAN 1: Huruf Asli (Terdorong ke atas dan hilang saat di-hover) */}
+          <motion.span
+            className="inline-block"
+            animate={{
+              y: isActive ? "-100%" : "0%",
+            }}
+            transition={{
+              duration: 0.5,
+              ease: [0.16, 1, 0.3, 1], // Custom kurva agar terasa berat dan mekanis
+              delay: i * 0.025, // Stagger (huruf bergulung satu per satu)
+            }}
+          >
+            {char}
+          </motion.span>
+          
+          {/* LAPISAN 2: Huruf Kloningan (Berada di bawah, lalu naik mengisi saat di-hover) */}
+          <motion.span
+            className="absolute left-0 top-0 inline-block text-[#C8F04E]"
+            initial={{ y: "100%" }}
+            animate={{
+              y: isActive ? "0%" : "100%",
+            }}
+            transition={{
+              duration: 0.5,
+              ease: [0.16, 1, 0.3, 1],
+              delay: i * 0.05,
+            }}
+          >
+            {char}
+          </motion.span>
+
+        </span>
+      ))}
+    </motion.span>
+  );
+};
+
 export default function OurWorks() {
   const ref = useRef(null)
-  const imgRef = useRef(null) // Referensi baru khusus untuk GSAP
+  const imgRef = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
-  const [activeIndex, setActiveIndex] = useState(0)
+  
+  const [activeIndex, setActiveIndex] = useState(0) 
+  const [hoveredIndex, setHoveredIndex] = useState(null) 
 
-  // 2. GSAP Glitch Blur Effect
+  // GSAP Glitch Blur Effect (Gambar Kiri)
   useEffect(() => {
     if (!imgRef.current) return
 
     const img = imgRef.current
     const tl = gsap.timeline()
 
-    // Mematikan animasi yang sedang berjalan jika user melakukan hover terlalu cepat
     gsap.killTweensOf(img)
 
-    // Rangkaian animasi Glitch Blur
     tl.fromTo(img,
-      // Kondisi Awal: Blur tebal, sedikit terang (brightness), membesar, dan miring (skew)
       { filter: 'blur(25px) brightness(1.5)', opacity: 0, scale: 1.15, skewX: 12, x: 20 },
-      // Masuk secara cepat
       { filter: 'blur(0px) brightness(1)', opacity: 1, scale: 1, skewX: 0, x: 0, duration: 0.25, ease: 'power4.out' }
     )
-    // Efek "Stutter" / Glitch susulan yang sangat cepat
     .to(img, { x: -8, skewX: -4, filter: 'blur(6px)', duration: 0.04 })
     .to(img, { x: 8, skewX: 4, filter: 'blur(3px)', duration: 0.04 })
     .to(img, { x: 0, skewX: 0, filter: 'blur(0px)', duration: 0.04 })
 
-  }, [activeIndex]) // Akan terpicu setiap kali activeIndex (hover teks) berubah
+  }, [activeIndex])
 
   return (
     <section id="works" ref={ref} className="w-full bg-[#0a0a0a] px-16 py-24 font-sans">
@@ -48,7 +96,6 @@ export default function OurWorks() {
         
         {/* --- HEADER SECTION --- */}
         <div className="mb-16">
-          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -63,7 +110,6 @@ export default function OurWorks() {
             </span>
           </motion.div>
 
-          {/* Subtitle */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -86,7 +132,6 @@ export default function OurWorks() {
             className="w-full max-w-[572px] aspect-square rounded-[20px] overflow-hidden relative shrink-0 border border-white/10"
             style={{ backgroundColor: '#141414' }}
           >
-            {/* Tag img standar (bukan motion.img lagi) karena animasi di-handle oleh GSAP */}
             <img
               ref={imgRef}
               src={projects[activeIndex].image}
@@ -102,22 +147,29 @@ export default function OurWorks() {
             transition={{ duration: 0.9, delay: 0.3 }}
             className="flex flex-col justify-start"
           >
-            {projects.map((project, i) => (
-              <button
-                key={project.name}
-                onMouseEnter={() => setActiveIndex(i)} 
-                onClick={() => setActiveIndex(i)} 
-                className="text-left font-medium transition-colors duration-300 block"
-                style={{
-                  fontSize: 'clamp(36px, 4vw, 56px)', 
-                  color: i === activeIndex ? '#C8F04E' : '#8A8A8A', 
-                  letterSpacing: '-0.03em',
-                  lineHeight: '1.1',
-                }}
-              >
-                {project.name}
-              </button>
-            ))}
+            {projects.map((project, i) => {
+              const isActive = hoveredIndex === i;
+              const isFaded = hoveredIndex !== null && hoveredIndex !== i;
+
+              return (
+                <button
+                  key={project.name}
+                  onMouseEnter={() => {
+                    setHoveredIndex(i); 
+                    setActiveIndex(i);  
+                  }} 
+                  onMouseLeave={() => setHoveredIndex(null)} 
+                  className="text-left font-medium block mb-2"
+                  style={{
+                    fontSize: 'clamp(36px, 4vw, 56px)', 
+                    letterSpacing: '-0.03em',
+                    lineHeight: '1.3'
+                  }}
+                >
+                  <CasinoText text={project.name} isActive={isActive} isFaded={isFaded} />
+                </button>
+              );
+            })}
           </motion.div>
 
         </div>
