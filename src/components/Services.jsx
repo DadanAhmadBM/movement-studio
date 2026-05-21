@@ -105,8 +105,8 @@ export default function Services() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1 }}
           /* DIUBAH: text-right dihapus, teks sekarang otomatis sejajar kiri di bawah tombol */
-          className="text-white font-medium leading-tight whitespace-nowrap"
-          style={{ fontSize: "clamp(18px, 2.5vw, 40px)" }}
+          className="text-white font-medium leading-tight max-w-full"
+          style={{ fontSize: "clamp(28px, 2.5vw, 40px)" }}
         >
           Everything you need to build a stronger digital presence.
         </motion.p>

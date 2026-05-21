@@ -35,40 +35,36 @@ export default function CTAQuote() {
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent to-[#0A0A0A]/80" />
 
         {/* --- KONTEN TEKS --- */}
-        {/* Class text-center ditambahkan pada div pembungkus */}
-        <div className="relative z-10 px-6 md:px-16 w-full max-w-5xl mx-auto flex justify-center">
+        <div className="relative z-10 px-4 md:px-16 w-full max-w-5xl mx-auto flex justify-center">
           <p
-            // Tambahkan flex flex-col items-center text-center di sini
-            className="font-sans font-medium tracking-tight flex flex-col items-center text-center w-full"
-            style={{ fontSize: "clamp(24px, 3.8vw, 52px)", lineHeight: "1.3" }}
+            className="font-sans font-medium tracking-tight flex flex-col items-center justify-center text-center w-full"
+            style={{ fontSize: "clamp(28px, 4vw, 52px)", lineHeight: "1.3" }}
           >
             {/* Render Baris Pertama */}
-            <span className="block mb-2 md:mb-1 whitespace-nowrap text-center">
+            <span className="flex flex-wrap md:flex-nowrap justify-center gap-x-[0.3em] mb-2 md:mb-1 whitespace-normal md:whitespace-nowrap text-center w-full">
               {line1.map((word, i) => {
                 const start = i / totalWords;
                 const end = start + 1 / totalWords;
                 const opacity = useTransform(
                   scrollYProgress,
                   [start, end],
-                  [0.25, 1],
+                  [0.25, 1]
                 );
 
                 return (
-                  <span key={`l1-${i}`}>
-                    <motion.span
-                      style={{ opacity }}
-                      className="text-white inline"
-                    >
-                      {word}
-                    </motion.span>
-                    {i === line1.length - 1 ? "" : " "}
-                  </span>
+                  <motion.span
+                    key={`l1-${i}`}
+                    style={{ opacity }}
+                    className="text-white inline-block"
+                  >
+                    {word}
+                  </motion.span>
                 );
               })}
             </span>
 
             {/* Render Baris Kedua */}
-            <span className="block whitespace-nowrap text-center">
+            <span className="flex flex-wrap md:flex-nowrap justify-center gap-x-[0.3em] whitespace-normal md:whitespace-nowrap text-center w-full">
               {line2.map((word, i) => {
                 const globalIndex = i + line1.length;
                 const start = globalIndex / totalWords;
@@ -76,19 +72,17 @@ export default function CTAQuote() {
                 const opacity = useTransform(
                   scrollYProgress,
                   [start, end],
-                  [0.25, 1],
+                  [0.25, 1]
                 );
 
                 return (
-                  <span key={`l2-${i}`}>
-                    <motion.span
-                      style={{ opacity }}
-                      className="text-white inline"
-                    >
-                      {word}
-                    </motion.span>
-                    {i === line2.length - 1 ? "" : " "}
-                  </span>
+                  <motion.span
+                    key={`l2-${i}`}
+                    style={{ opacity }}
+                    className="text-white inline-block"
+                  >
+                    {word}
+                  </motion.span>
                 );
               })}
             </span>
