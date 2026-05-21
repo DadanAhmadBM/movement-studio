@@ -84,12 +84,13 @@ export default function Services() {
 
   return (
     <section id="services" ref={ref} className="w-full py-24 bg-[#0a0a0a]">
-      {/* DIUBAH: mb-0 diganti menjadi mb-12 atau mb-16 agar ada gap ekstra */}
-      <div className="flex justify-between items-center w-full px-16 mb-16">
+      {/* DIUBAH: Menggunakan flex-col dan items-start agar tersusun atas-bawah dan rata kiri */}
+      <div className="flex flex-col items-start w-full px-16 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
+          className="mb-8"
         >
           <span
             className="font-mono px-3 py-2 font-medium tracking-widest text-black rounded whitespace-nowrap"
@@ -98,19 +99,19 @@ export default function Services() {
             OUR SERVICES
           </span>
         </motion.div>
+        
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1 }}
-          /* DIUBAH: class mb-4 dihapus agar teks sejajar vertikal dengan tombol OUR SERVICES */
-          className="mb-8 text-white font-medium leading-tight text-right whitespace-nowrap"
+          /* DIUBAH: text-right dihapus, teks sekarang otomatis sejajar kiri di bawah tombol */
+          className="text-white font-medium leading-tight whitespace-nowrap"
           style={{ fontSize: "clamp(18px, 2.5vw, 40px)" }}
         >
           Everything you need to build a stronger digital presence.
         </motion.p>
       </div>
 
-      {/* DIUBAH: Menambahkan onMouseLeave agar kembali ke default saat kursor keluar */}
       <div 
         className="mt-12"
         onMouseLeave={() => setHoveredIndex(0)}
