@@ -14,6 +14,20 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleMobileNavClick = (e, targetId) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    setTimeout(() => {
+      const element = document.getElementById(targetId);
+      if (element) {
+        // Adjust scroll position to account for fixed navbar height if needed
+        const y = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 300); // Wait for menu to close
+  };
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -74,17 +88,40 @@ export default function Navbar() {
 
       {/* Mobile Hamburger Menu Icon */}
       <button 
-        className="md:hidden text-white p-2"
+        className="md:hidden text-white p-2 flex items-center justify-center"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-label="Toggle menu"
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          {isMobileMenuOpen ? (
-            <path d="M18 6L6 18M6 6l12 12" />
-          ) : (
-            <path d="M3 12h18M3 6h18M3 18h18" />
-          )}
-        </svg>
+        <motion.svg 
+          width="24" 
+          height="24" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          animate={isMobileMenuOpen ? "open" : "closed"}
+        >
+          <motion.path
+            stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            variants={{
+              closed: { d: "M3 6 L21 6" },
+              open: { d: "M6 6 L18 18" }
+            }}
+          />
+          <motion.path
+            stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            variants={{
+              closed: { d: "M3 12 L21 12", opacity: 1 },
+              open: { d: "M12 12 L12 12", opacity: 0 }
+            }}
+            transition={{ duration: 0.2 }}
+          />
+          <motion.path
+            stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            variants={{
+              closed: { d: "M3 18 L21 18" },
+              open: { d: "M6 18 L18 6" }
+            }}
+          />
+        </motion.svg>
       </button>
       </div>
 
@@ -98,22 +135,32 @@ export default function Navbar() {
         className="md:hidden overflow-hidden bg-[#0A0A0A] border-t border-white/10"
       >
         <div className="flex flex-col px-6 py-4 gap-4">
-          {["HOME", "ABOUT", "SERVICES", "WORKS"].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-[#cccccc] font-mono font-medium tracking-widest hover:text-white transition-colors duration-200 text-sm py-2"
-            >
-              {item}
-            </a>
-          ))}
+          {["HOME", "ABOUT", "SERVICES", "WORKS"].map((item) => {
+            const targetId = item.toLowerCase();
+            return (
+              <a
+                key={item}
+                href={`#${targetId}`}
+                onClick={(e) => handleMobileNavClick(e, targetId)}
+                className="text-[#cccccc] font-mono font-medium tracking-widest hover:text-white transition-colors duration-200 text-sm py-2"
+              >
+                {item}
+              </a>
+            );
+          })}
           <a
             href="#contact"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="mt-2 inline-flex items-center justify-center bg-[#C8F04E] text-[#0A0A0A] font-mono text-xs font-bold tracking-widest px-6 py-4 rounded-md"
+            onClick={(e) => handleMobileNavClick(e, "contact")}
+            className="mt-2 flex items-center group overflow-hidden rounded-md"
           >
-            GET IN TOUCH
+            <div className="flex-1 bg-[#1c1c1c] text-white/90 font-mono text-xs font-semibold tracking-widest px-6 py-4 transition-colors flex items-center justify-center">
+              CONTACT
+            </div>
+            <div className="bg-[#C8F04E] text-[#0A0A0A] px-5 py-4 transition-colors flex items-center justify-center">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </div>
           </a>
         </div>
       </motion.div>
