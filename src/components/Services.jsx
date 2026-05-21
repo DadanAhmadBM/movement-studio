@@ -79,12 +79,13 @@ const CasinoText = ({ text, isActive, isFaded }) => {
 export default function Services() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  // Mengubah inisialisasi state menjadi 0 agar "Landing Page" aktif secara default
+  // Inisialisasi state menjadi 0 agar "Landing Page" aktif secara default
   const [hoveredIndex, setHoveredIndex] = useState(0);
 
   return (
     <section id="services" ref={ref} className="w-full py-24 bg-[#0a0a0a]">
-      <div className="flex justify-between items-center w-full px-16 mb-0">
+      {/* DIUBAH: mb-0 diganti menjadi mb-12 atau mb-16 agar ada gap ekstra */}
+      <div className="flex justify-between items-center w-full px-16 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -101,14 +102,19 @@ export default function Services() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="mb-4 text-white font-medium leading-tight text-right whitespace-nowrap"
+          /* DIUBAH: class mb-4 dihapus agar teks sejajar vertikal dengan tombol OUR SERVICES */
+          className="mb-8 text-white font-medium leading-tight text-right whitespace-nowrap"
           style={{ fontSize: "clamp(18px, 2.5vw, 40px)" }}
         >
           Everything you need to build a stronger digital presence.
         </motion.p>
       </div>
 
-      <div className="mt-12">
+      {/* DIUBAH: Menambahkan onMouseLeave agar kembali ke default saat kursor keluar */}
+      <div 
+        className="mt-12"
+        onMouseLeave={() => setHoveredIndex(0)}
+      >
         {services.map((svc, i) => (
           <motion.div
             key={svc.title}
@@ -116,7 +122,6 @@ export default function Services() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 + i * 0.1 }}
             onMouseEnter={() => setHoveredIndex(i)}
-            // onMouseLeave dihapus agar tetap ada yang aktif saat kursor keluar
             className="relative cursor-pointer border-t transition-colors duration-300 min-h-[160px]"
             style={{
               borderColor:
