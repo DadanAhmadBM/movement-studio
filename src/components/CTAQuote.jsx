@@ -16,9 +16,8 @@ export default function CTAQuote() {
 
   // Memecah teks menjadi dua baris
   const line1 = "Your website is more than a digital presence.".split(" ");
-  const line2 = "It is how people see, trust, and remember your brand.".split(
-    " ",
-  );
+  const line2 = "It is how people see, trust, and remember your brand.".split(" ");
+  
   const totalWords = line1.length + line2.length;
 
   return (
@@ -36,17 +35,18 @@ export default function CTAQuote() {
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent to-[#0a0a0a]/80" />
 
         {/* --- KONTEN TEKS --- */}
-        <div className="relative z-10 text-center px-16 w-full max-w-5xl mx-auto">
+        {/* Class text-center ditambahkan pada div pembungkus */}
+        <div className="relative z-10 px-16 w-full max-w-5xl mx-auto flex justify-center">
           <p
-            className="font-sans font-medium tracking-tight"
-            style={{ fontSize: "clamp(20px, 3.8vw, 52px)", lineHeight: "1.3" }}
+            // Tambahkan flex flex-col items-center text-center di sini
+            className="font-sans font-medium tracking-tight flex flex-col items-center text-center w-full"
+            style={{ fontSize: "clamp(16px, 3.8vw, 52px)", lineHeight: "1.3" }}
           >
             {/* Render Baris Pertama */}
-            <span className="block mb-2 md:mb-1">
+            <span className="block mb-2 md:mb-1 whitespace-nowrap text-center">
               {line1.map((word, i) => {
                 const start = i / totalWords;
                 const end = start + 1 / totalWords;
-                // Opacity teks bergerak dari 0.25 (samar) menuju 1 (putih terang) seiring scroll berjalan
                 const opacity = useTransform(
                   scrollYProgress,
                   [start, end],
@@ -68,7 +68,7 @@ export default function CTAQuote() {
             </span>
 
             {/* Render Baris Kedua */}
-            <span className="block">
+            <span className="block whitespace-nowrap text-center">
               {line2.map((word, i) => {
                 const globalIndex = i + line1.length;
                 const start = globalIndex / totalWords;
