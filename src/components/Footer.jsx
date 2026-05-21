@@ -15,10 +15,10 @@ export default function Footer() {
   const isWordmarkInView = useInView(wordmarkRef, { once: true, amount: 0.3 })
 
   return (
-    <section id="contact" ref={sectionRef} className="w-full relative overflow-hidden pt-24 pb-0 bg-[#0a0a0a]">
+    <section id="contact" ref={sectionRef} className="w-full relative overflow-hidden pt-16 md:pt-24 pb-0 bg-[#0A0A0A]">
       
       {/* Content grid */}
-      <div className="px-16 flex flex-col md:flex-row items-start justify-between gap-12 md:gap-16 mb-16 md:mb-24">
+      <div className="px-6 md:px-16 flex flex-col md:flex-row items-start justify-between gap-12 md:gap-16 mb-16 md:mb-24">
         
         {/* Left: CTA */}
         <motion.div
@@ -56,7 +56,7 @@ export default function Footer() {
           initial={{ opacity: 0, y: 30 }}
           animate={isSectionInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex gap-16 md:gap-24 pt-2"
+          className="flex flex-col sm:flex-row gap-12 md:gap-24 pt-2 w-full md:w-auto"
         >
           {/* Social links */}
           <div className="flex flex-col gap-4">

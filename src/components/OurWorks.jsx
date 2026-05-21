@@ -135,7 +135,7 @@ export default function OurWorks() {
     <section
       id="works"
       ref={ref}
-      className="w-full bg-[#0a0a0a] px-16 py-24 font-sans overflow-hidden"
+      className="w-full bg-[#0A0A0A] px-6 md:px-16 py-16 md:py-24 font-sans overflow-hidden"
     >
       <div className="max-w-[1200px] mx-2">
         {/* HEADER */}
@@ -172,7 +172,7 @@ export default function OurWorks() {
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.2 }}
-            className="w-full max-w-[572px] aspect-square rounded-[16px] overflow-hidden relative shrink-0 border border-white/10 bg-[#141414]"
+            className="w-full md:w-[572px] aspect-square rounded-[16px] overflow-hidden relative shrink-0 border border-white/10 bg-[#141414]"
           >
             <img
               ref={imageRef}

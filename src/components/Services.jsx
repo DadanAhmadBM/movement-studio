@@ -33,7 +33,7 @@ const CasinoText = ({ text, isActive, isFaded }) => {
     <motion.span
       animate={{
         color: isActive
-          ? "#000000"
+          ? "#0A0A0A"
           : isFaded
             ? "rgba(255,255,255,0.1)"
             : "rgba(255,255,255,0.25)",
@@ -83,9 +83,9 @@ export default function Services() {
   const [hoveredIndex, setHoveredIndex] = useState(0);
 
   return (
-    <section id="services" ref={ref} className="w-full py-24 bg-[#0a0a0a]">
+    <section id="services" ref={ref} className="w-full py-16 md:py-24 bg-[#0A0A0A]">
       {/* DIUBAH: Menggunakan flex-col dan items-start agar tersusun atas-bawah dan rata kiri */}
-      <div className="flex flex-col items-start w-full px-16 mb-16">
+      <div className="flex flex-col items-start w-full px-6 md:px-16 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -132,9 +132,9 @@ export default function Services() {
               backgroundColor: hoveredIndex === i ? "#ffffff" : "transparent",
             }}
           >
-            <div className="flex items-center px-16 py-10 w-full h-full relative z-10">
+            <div className="flex flex-col md:flex-row md:items-center px-6 md:px-16 py-8 md:py-10 w-full h-full relative z-10 gap-4 md:gap-0">
               {/* Kolom 1 (Kiri): Judul dengan Animasi Slot Machine */}
-              <div className="w-1/3 flex justify-start pr-4">
+              <div className="w-full md:w-1/3 flex justify-start pr-4">
                 <h3
                   className="font-bold leading-none"
                   style={{
@@ -152,25 +152,25 @@ export default function Services() {
               </div>
 
               {/* Kolom 2 (Tengah): Deskripsi */}
-              <div className="w-1/3 flex justify-center px-4">
+              <div className="w-full md:w-1/3 flex justify-start md:justify-center md:px-4">
                 <p
                   className="text-xl leading-relaxed transition-colors duration-300 max-w-[280px]"
                   style={{
                     color:
-                      hoveredIndex === i ? "#000000" : "rgba(255,255,255,0.4)",
+                      hoveredIndex === i ? "#0A0A0A" : "rgba(255,255,255,0.4)",
                   }}
                 >
                   {svc.description}
                 </p>
               </div>
 
-              <div className="w-1/3 flex justify-end pl-4">
+              <div className="hidden md:flex w-1/3 justify-end pl-4">
                 <div className="w-[260px]" />
               </div>
             </div>
 
-            {/* Gambar Placeholder */}
-            <div className="absolute right-40 top-1/2 -translate-y-1/2 z-50 pointer-events-none">
+            {/* Gambar Placeholder (Sembunyikan di Mobile) */}
+            <div className="hidden md:block absolute right-40 top-1/2 -translate-y-1/2 z-50 pointer-events-none">
               <AnimatePresence>
                 {hoveredIndex === i && (
                   <motion.div

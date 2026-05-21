@@ -43,7 +43,7 @@ export default function WhoWeAre() {
   return (
     <section
       id="about"
-      className="w-full bg-[#0a0a0a] px-16 py-20 md:py-32 flex flex-col items-start"
+      className="w-full bg-[#0A0A0A] px-6 md:px-16 py-16 md:py-32 flex flex-col items-start"
     >
       {/* --- BADGE --- */}
       <div className="mb-8">
@@ -59,7 +59,7 @@ export default function WhoWeAre() {
       <div ref={containerRef} className="w-full mb-16 md:mb-24 max-w-6xl">
         <p
           className="font-sans font-medium leading-[1.3] text-left tracking-tight flex flex-wrap"
-          style={{ fontSize: "clamp(22px, 3.5vw, 42px)" }}
+          style={{ fontSize: "clamp(24px, 3.5vw, 42px)" }}
         >
           {words.map((word, index) => {
             const start = index / words.length;

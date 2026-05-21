@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <div style={{ backgroundColor: '#0a0a0a', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: '#0A0A0A', minHeight: '100vh' }}>
       <Navbar />
       <Hero />
       <WhoWeAre />

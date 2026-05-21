@@ -181,18 +181,18 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="relative w-full min-h-screen overflow-hidden flex flex-col bg-[#0a0a0a] px-16 pb-6 pt-32 font-sans">
+    <section id="home" className="relative w-full min-h-[100svh] overflow-hidden flex flex-col bg-[#0A0A0A] px-6 md:px-16 pb-6 pt-24 md:pt-32 font-sans">
 
       {/* Background Image & Overlay */}
       <div
         className="absolute inset-0 pointer-events-none bg-cover bg-center bg-no-repeat opacity-90"
         style={{ backgroundImage: `url(${bgImage})` }}
       />
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-[#0a0a0a]/90" />
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-[#0A0A0A]/90" />
       <div className="absolute top-1/3 left-1/4 w-[50vw] h-[50vh] bg-[#C8F04E] opacity-[0.08] blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
 
       {/* --- MAIN CONTENT --- */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center w-full pointer-events-none">
+      <div className="relative z-10 flex-1 flex flex-col justify-center w-full pointer-events-none mt-8 md:mt-0">
         <div className="flex flex-col md:flex-row w-full max-w-6xl mx-auto items-center pointer-events-auto">
 
           {/* Left Column */}

@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         lime: { DEFAULT: '#C8F04E', dark: '#3a4a00' },
+        black: '#0A0A0A',
       },
       fontFamily: {
         sans: ['Satoshi', 'sans-serif'],

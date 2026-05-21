@@ -25,22 +25,22 @@ export default function CTAQuote() {
        Makin besar nilainya (misal h-[300vh]), scroll akan terasa semakin pelan dan padat. */
     <div ref={containerRef} className="relative w-full h-[250vh]">
       {/* 2. INNER STICKY CONTAINER: Bagian yang mengunci di layar (100vh) */}
-      <section className="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
+      <section className="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A]">
         {/* --- BACKGROUND IMAGE DENGAN OPACITY --- */}
         <div
           className="absolute inset-0 pointer-events-none bg-cover bg-center bg-no-repeat opacity-40"
           style={{ backgroundImage: `url(${bgImage})` }}
         />
         {/* Overlay hitam tipis tambahan untuk memperhalus kontras */}
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent to-[#0a0a0a]/80" />
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent to-[#0A0A0A]/80" />
 
         {/* --- KONTEN TEKS --- */}
         {/* Class text-center ditambahkan pada div pembungkus */}
-        <div className="relative z-10 px-16 w-full max-w-5xl mx-auto flex justify-center">
+        <div className="relative z-10 px-6 md:px-16 w-full max-w-5xl mx-auto flex justify-center">
           <p
             // Tambahkan flex flex-col items-center text-center di sini
             className="font-sans font-medium tracking-tight flex flex-col items-center text-center w-full"
-            style={{ fontSize: "clamp(16px, 3.8vw, 52px)", lineHeight: "1.3" }}
+            style={{ fontSize: "clamp(24px, 3.8vw, 52px)", lineHeight: "1.3" }}
           >
             {/* Render Baris Pertama */}
             <span className="block mb-2 md:mb-1 whitespace-nowrap text-center">
