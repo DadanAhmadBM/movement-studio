@@ -59,7 +59,7 @@ export default function WhoWeAre() {
       <div ref={containerRef} className="w-full mb-16 md:mb-24 max-w-6xl">
         <p
           className="font-sans font-medium leading-[1.3] text-left tracking-tight flex flex-wrap"
-          style={{ fontSize: "clamp(24px, 3.5vw, 42px)" }}
+          style={{ fontSize: "clamp(28px, 3.5vw, 42px)" }}
         >
           {words.map((word, index) => {
             const start = index / words.length;

@@ -44,12 +44,12 @@ export default function Navbar() {
         <img
           src={logoImage}
           alt="Movement Logo"
-          className="h-8 object-contain"
+          className="h-8 md:h-10 lg:h-8 object-contain transition-all duration-300"
         />
       </a>
 
       {/* Desktop Nav Links */}
-      <div className="hidden md:flex items-center gap-12 lg:gap-24">
+      <div className="hidden lg:flex items-center gap-12 xl:gap-24">
         {["HOME", "ABOUT", "SERVICES", "WORKS"].map((item) => (
           <a
             key={item}
@@ -65,7 +65,7 @@ export default function Navbar() {
       {/* Desktop Contact Button */}
       <a
         href="#contact"
-        className="hidden md:flex items-center group overflow-hidden rounded-md"
+        className="hidden lg:flex items-center group overflow-hidden rounded-md"
       >
         <div className="bg-[#1c1c1c] text-white/90 font-mono text-xs font-semibold tracking-widest px-6 py-3 transition-colors group-hover:bg-[#252525]">
           CONTACT
@@ -86,15 +86,14 @@ export default function Navbar() {
         </div>
       </a>
 
-      {/* Mobile Hamburger Menu Icon */}
+      {/* Mobile & Tablet Hamburger Menu Icon */}
       <button 
-        className="md:hidden text-white p-2 flex items-center justify-center"
+        className="lg:hidden text-white p-2 flex items-center justify-center"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-label="Toggle menu"
       >
         <motion.svg 
-          width="24" 
-          height="24" 
+          className="w-6 h-6 md:w-8 md:h-8 transition-all duration-300"
           viewBox="0 0 24 24" 
           fill="none" 
           animate={isMobileMenuOpen ? "open" : "closed"}
@@ -125,14 +124,14 @@ export default function Navbar() {
       </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile & Tablet Menu Dropdown */}
       <motion.div 
         initial={{ height: 0, opacity: 0 }}
         animate={{ 
           height: isMobileMenuOpen ? "auto" : 0, 
           opacity: isMobileMenuOpen ? 1 : 0 
         }}
-        className="md:hidden overflow-hidden bg-[#0A0A0A] border-t border-white/10"
+        className="lg:hidden overflow-hidden bg-[#0A0A0A] border-t border-white/10"
       >
         <div className="flex flex-col px-6 py-4 gap-4">
           {["HOME", "ABOUT", "SERVICES", "WORKS"].map((item) => {

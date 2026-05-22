@@ -132,9 +132,9 @@ export default function Services() {
               backgroundColor: hoveredIndex === i ? "#ffffff" : "transparent",
             }}
           >
-            <div className="flex flex-col md:flex-row md:items-center px-6 md:px-16 py-8 md:py-10 w-full h-full relative z-10 gap-4 md:gap-0">
+            <div className="flex flex-col lg:flex-row lg:items-center px-6 md:px-16 py-8 lg:py-10 w-full h-full relative z-10 gap-4 lg:gap-0">
               {/* Kolom 1 (Kiri): Judul dengan Animasi Slot Machine */}
-              <div className="w-full md:w-1/3 flex justify-start pr-4">
+              <div className="w-full lg:w-1/3 flex justify-start pr-4">
                 <h3
                   className="font-bold leading-none"
                   style={{
@@ -152,7 +152,7 @@ export default function Services() {
               </div>
 
               {/* Kolom 2 (Tengah): Deskripsi */}
-              <div className="w-full md:w-1/3 flex justify-start md:justify-center md:px-4">
+              <div className="w-full lg:w-1/3 flex justify-start lg:justify-center lg:px-4">
                 <p
                   className="text-xl leading-relaxed transition-colors duration-300 max-w-[280px]"
                   style={{
@@ -164,13 +164,13 @@ export default function Services() {
                 </p>
               </div>
 
-              <div className="hidden md:flex w-1/3 justify-end pl-4">
+              <div className="hidden lg:flex w-1/3 justify-end pl-4">
                 <div className="w-[260px]" />
               </div>
             </div>
 
-            {/* Gambar Placeholder (Sembunyikan di Mobile) */}
-            <div className="hidden md:block absolute right-40 top-1/2 -translate-y-1/2 z-50 pointer-events-none">
+            {/* Gambar Placeholder (Sembunyikan di Mobile & Tablet) */}
+            <div className="hidden lg:block absolute right-40 top-1/2 -translate-y-1/2 z-50 pointer-events-none">
               <AnimatePresence>
                 {hoveredIndex === i && (
                   <motion.div

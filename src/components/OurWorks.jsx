@@ -2,42 +2,45 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 
+// 1. IMPORT GAMBAR DARI FOLDER ASSETS
+// PENTING: Ganti nama file dan ekstensi (.png / .jpg) sesuai dengan yang ada di folder assets kamu!
+import imgNovaEnergy from "../assets/project-nova-energy-image.png";
+import imgPulseBand from "../assets/project-pulse-image.png";
+import imgHazenPictures from "../assets/project-aurahome-image.png";
+import imgNejtrip from "../assets/project-nova-energy-image.png";
+import imgHitcg from "../assets/project-hitcg-image.png";
+import imgAurahome from "../assets/project-aurahome-image.png";
+
 const projects = [
   {
     name: "Nova Energy",
     tags: ["Energy", "Startup"],
-    image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop",
+    image: imgNovaEnergy, // 2. Gunakan variabel import di sini
   },
   {
     name: "Pulse Band",
     tags: ["Music", "Event"],
-    image:
-      "https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?q=80&w=1000&auto=format&fit=crop",
+    image: imgPulseBand,
   },
   {
     name: "Hazen Pictures",
     tags: ["Film", "Production"],
-    image:
-      "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1000&auto=format&fit=crop",
+    image: imgHazenPictures,
   },
   {
     name: "Nejtrip",
     tags: ["Travel", "App"],
-    image:
-      "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1000&auto=format&fit=crop",
+    image: imgNejtrip,
   },
   {
     name: "Hi.tcg",
     tags: ["Gaming", "E-commerce"],
-    image:
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop",
+    image: imgHitcg,
   },
   {
     name: "Aurahome",
     tags: ["Interior", "Property"],
-    image:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1000&auto=format&fit=crop",
+    image: imgAurahome,
   },
 ];
 
@@ -225,7 +228,7 @@ export default function OurWorks() {
         </div>
 
         {/* MOBILE CONTENT */}
-        <div className="grid grid-cols-2 gap-4 md:hidden">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:hidden">
           {projects.map((project, i) => (
             <motion.div 
               key={project.name}
