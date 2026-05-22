@@ -1,9 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-// Ganti ekstensi atau nama file di bawah ini sesuai dengan nama gambar di folder assets Anda
-import bgImage from "../assets/bg-image.png";
-
 export default function CTAQuote() {
   const containerRef = useRef(null);
 
@@ -27,9 +24,9 @@ export default function CTAQuote() {
       {/* 2. INNER STICKY CONTAINER: Bagian yang mengunci di layar (100vh) */}
       <section className="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A]">
         {/* --- BACKGROUND IMAGE DENGAN OPACITY --- */}
-        <div
-          className="absolute inset-0 pointer-events-none bg-cover bg-center bg-no-repeat opacity-40"
-          style={{ backgroundImage: `url(${bgImage})` }}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center pointer-events-none opacity-40 mix-blend-lighten"
+          style={{ backgroundImage: "url('/bg-image.png')" }}
         />
         {/* Overlay hitam tipis tambahan untuk memperhalus kontras */}
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent to-[#0A0A0A]/80" />

@@ -3,9 +3,6 @@ import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import * as THREE from 'three'
 
-import bgImage from '../assets/bg-image.png'
-import headlineHero from '../assets/headline-hero.svg'
-
 export default function Hero() {
   const [time, setTime] = useState('')
   
@@ -49,7 +46,7 @@ export default function Hero() {
     renderer.domElement.style.pointerEvents = 'none' 
     container.appendChild(renderer.domElement)
 
-    const texture = new THREE.TextureLoader().load(headlineHero)
+    const texture = new THREE.TextureLoader().load('/headline-hero.svg')
     texture.minFilter = THREE.LinearFilter
     texture.magFilter = THREE.LinearFilter
 
@@ -186,7 +183,7 @@ export default function Hero() {
       {/* Background Image & Overlay */}
       <div
         className="absolute inset-0 pointer-events-none bg-cover bg-center bg-no-repeat opacity-90"
-        style={{ backgroundImage: `url(${bgImage})` }}
+        style={{ backgroundImage: `url('/bg-image.png')` }}
       />
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-[#0A0A0A]/90" />
       <div className="absolute top-1/3 left-1/4 w-[50vw] h-[50vh] bg-[#C8F04E] opacity-[0.08] blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
@@ -252,7 +249,7 @@ export default function Hero() {
         >
           {/* Spacer Image */}
           <img 
-            src={headlineHero} 
+            src="/headline-hero.svg" 
             alt="Spacer" 
             className="w-full h-auto block opacity-0 pointer-events-none" 
           />

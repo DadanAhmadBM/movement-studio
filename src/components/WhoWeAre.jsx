@@ -6,9 +6,6 @@ import {
 } from "framer-motion";
 import { useRef, useEffect } from "react";
 
-// Mengimpor file video dari folder assets Anda
-import videoSrc from "../assets/Scene.mp4";
-
 export default function WhoWeAre() {
   const containerRef = useRef(null);
   const videoRef = useRef(null);
@@ -92,7 +89,7 @@ export default function WhoWeAre() {
       >
         <video
           ref={videoRef}
-          src={videoSrc}
+          src="/Scene.mp4"
           className="w-full h-full object-cover"
           muted
           loop

@@ -1,9 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
-// --- IMPORT SVG ANDA DI SINI ---
-import footerWordmark from '../assets/dark-headline.svg' 
-
 export default function Footer() {
   // Ref untuk memicu teks CTA dan Info Kontak di atas
   const sectionRef = useRef(null)
@@ -90,7 +87,7 @@ export default function Footer() {
           animate={isWordmarkInView ? { y: 0 } : {}}
           // Delay saya ubah menjadi 0 agar saat terlihat langsung merespon dengan cepat
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-          src={footerWordmark} 
+          src="/dark-headline.svg" 
           alt="Movement Wordmark" 
           className="w-full h-auto block select-none pointer-events-none" 
         />

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import logoImage from "../assets/logo-image.png";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -42,7 +41,7 @@ export default function Navbar() {
       {/* Logo */}
       <a href="#home" className="flex items-center gap-3 cursor-pointer">
         <img
-          src={logoImage}
+          src="/logo-image.png"
           alt="Movement Logo"
           className="h-8 md:h-10 lg:h-8 object-contain transition-all duration-300"
         />

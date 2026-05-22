@@ -2,45 +2,36 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 
-// 1. IMPORT GAMBAR DARI FOLDER ASSETS
-// PENTING: Ganti nama file dan ekstensi (.png / .jpg) sesuai dengan yang ada di folder assets kamu!
-import imgNovaEnergy from "../assets/project-nova-energy-image.png";
-import imgPulseBand from "../assets/project-pulse-image.png";
-import imgHazenPictures from "../assets/project-aurahome-image.png";
-import imgNejtrip from "../assets/project-nova-energy-image.png";
-import imgHitcg from "../assets/project-hitcg-image.png";
-import imgAurahome from "../assets/project-aurahome-image.png";
-
 const projects = [
   {
     name: "Nova Energy",
     tags: ["Energy", "Startup"],
-    image: imgNovaEnergy, // 2. Gunakan variabel import di sini
+    image: "/project-nova-energy-image.png",
   },
   {
     name: "Pulse Band",
     tags: ["Music", "Event"],
-    image: imgPulseBand,
+    image: "/project-pulse-image.png",
   },
   {
     name: "Hazen Pictures",
     tags: ["Film", "Production"],
-    image: imgHazenPictures,
+    image: "/project-aurahome-image.png",
   },
   {
     name: "Nejtrip",
     tags: ["Travel", "App"],
-    image: imgNejtrip,
+    image: "/project-nova-energy-image.png",
   },
   {
     name: "Hi.tcg",
     tags: ["Gaming", "E-commerce"],
-    image: imgHitcg,
+    image: "/project-hitcg-image.png",
   },
   {
     name: "Aurahome",
     tags: ["Interior", "Property"],
-    image: imgAurahome,
+    image: "/project-aurahome-image.png",
   },
 ];
 

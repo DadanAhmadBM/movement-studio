@@ -1,29 +1,24 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 
-// 1. IMPORT GAMBAR DARI FOLDER ASSETS
-import imgLandingPage from "../assets/landing-page-image.png";
-import imgBusinessWeb from "../assets/business-website-image.png";
-import imgCustomWeb from "../assets/custom-website-image.png";
-
 const services = [
   {
     title: "Landing Page",
     description:
-      "High-converting landing pages designed to capture attention, communicate value clearly, and drive action.",
-    image: imgLandingPage,
+      "Convert visitors into customers with high-performing, one-page websites designed to capture attention and drive action. Ideal for campaigns, product launches, or limited offers.",
+    image: "/landing-page-image.png",
   },
   {
     title: "Business Website",
     description:
-      "Professional business websites that strengthen credibility and create a modern online presence.",
-    image: imgBusinessWeb,
+      "Establish trust and authority with a robust, multi-page digital presence. Built for companies looking to showcase their services, values, and portfolio professionally.",
+    image: "/business-website-image.png",
   },
   {
-    title: "Custom Website",
+    title: "Custom Web App",
     description:
-      "Fully customized web solutions built around your business needs and more features.",
-    image: imgCustomWeb,
+      "Complex problems need elegant solutions. We build highly interactive, scalable, and data-driven web applications tailored to your specific operational workflows.",
+    image: "/custom-website-image.png",
   },
 ];
 
