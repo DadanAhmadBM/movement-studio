@@ -165,8 +165,8 @@ export default function OurWorks() {
           </motion.h2>
         </div>
 
-        {/* CONTENT */}
-        <div className="flex flex-col xl:flex-row items-start gap-12 xl:gap-[120px]">
+        {/* DESKTOP & TABLET CONTENT */}
+        <div className="hidden md:flex flex-col xl:flex-row items-start gap-12 xl:gap-[120px]">
           {/* IMAGE */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -222,6 +222,32 @@ export default function OurWorks() {
               );
             })}
           </motion.div>
+        </div>
+
+        {/* MOBILE CONTENT */}
+        <div className="grid grid-cols-2 gap-4 md:hidden">
+          {projects.map((project, i) => (
+            <motion.div 
+              key={project.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 + (i * 0.1) }}
+              className="flex flex-col"
+            >
+              <div className="w-full aspect-square rounded-[6px] overflow-hidden bg-[#141414] mb-4 relative">
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  className="w-full h-full object-cover"
+                  draggable={false}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+              </div>
+              <h3 className="text-white font-medium text-[16px] leading-tight">
+                {project.name}
+              </h3>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
