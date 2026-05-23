@@ -14,14 +14,14 @@ const projects = [
     image: "/project-pulse-image.png",
   },
   {
-    name: "Hazen Pictures",
+    name: "Grander Builder",
     tags: ["Film", "Production"],
-    image: "/project-aurahome-image.png",
+    image: "/project-grander-builder-image.png",
   },
   {
     name: "Nejtrip",
     tags: ["Travel", "App"],
-    image: "/project-nova-energy-image.png",
+    image: "/project-nejtrip-image.png",
   },
   {
     name: "Hi.tcg",
