@@ -13,7 +13,7 @@ export default function WhoWeAre() {
   // Mengambil progress scroll untuk animasi transisi warna kata
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "center center"],
+    offset: ["start center", "end center"],
   });
 
   // Mendeteksi apakah container video sudah masuk ke dalam viewport
