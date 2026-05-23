@@ -7,31 +7,37 @@ const projects = [
     name: "Nova Energy",
     tags: ["Energy", "Startup"],
     image: "/project-nova-energy-image.png",
+    url: "https://dev-nova-energy.vercel.app/",
   },
   {
     name: "Pulse Band",
     tags: ["Music", "Event"],
     image: "/project-pulse-image.png",
+    url: "https://pulse-staging-mv.vercel.app/",
   },
   {
     name: "Grander Builder",
     tags: ["Film", "Production"],
     image: "/project-grander-builder-image.png",
+    url: "https://grandeur-builders.vercel.app/",
   },
   {
     name: "Nejtrip",
     tags: ["Travel", "App"],
     image: "/project-nejtrip-image.png",
+    url: "https://www.nejtrip.com/",
   },
   {
     name: "Hi.tcg",
     tags: ["Gaming", "E-commerce"],
     image: "/project-hitcg-image.png",
+    url: "https://hi-tcg.vercel.app/",
   },
   {
     name: "Aurahome",
     tags: ["Interior", "Property"],
     image: "/project-aurahome-image.png",
+    url: "https://dev-aurahome.vercel.app/",
   },
 ];
 
@@ -162,11 +168,14 @@ export default function OurWorks() {
         {/* DESKTOP & TABLET CONTENT */}
         <div className="hidden md:flex flex-col xl:flex-row items-start gap-12 xl:gap-[120px]">
           {/* IMAGE */}
-          <motion.div
+          <motion.a
+            href={projects[activeIndex].url}
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.2 }}
-            className="w-full md:w-[572px] aspect-square rounded-[16px] overflow-hidden relative shrink-0 border border-white/10 bg-[#141414]"
+            className="w-full md:w-[572px] aspect-square rounded-[16px] overflow-hidden relative shrink-0 border border-white/10 bg-[#141414] block"
           >
             <img
               ref={imageRef}
@@ -179,7 +188,7 @@ export default function OurWorks() {
 
             {/* cinematic overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-          </motion.div>
+          </motion.a>
 
           {/* TEXT */}
           <motion.div
@@ -193,8 +202,11 @@ export default function OurWorks() {
               const isFaded = hoveredIndex !== null && hoveredIndex !== i;
 
               return (
-                <button
+                <a
                   key={project.name}
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onMouseEnter={() => {
                     setHoveredIndex(i);
                     setActiveIndex(i);
@@ -212,7 +224,7 @@ export default function OurWorks() {
                     isActive={isActive}
                     isFaded={isFaded}
                   />
-                </button>
+                </a>
               );
             })}
           </motion.div>
@@ -221,12 +233,15 @@ export default function OurWorks() {
         {/* MOBILE CONTENT */}
         <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:hidden">
           {projects.map((project, i) => (
-            <motion.div 
+            <motion.a 
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
               key={project.name}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + (i * 0.1) }}
-              className="flex flex-col"
+              className="flex flex-col block"
             >
               <div className="w-full aspect-square rounded-[6px] overflow-hidden bg-[#141414] mb-4 relative">
                 <img
@@ -240,7 +255,7 @@ export default function OurWorks() {
               <h3 className="text-white font-medium text-[16px] leading-tight">
                 {project.name}
               </h3>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>
