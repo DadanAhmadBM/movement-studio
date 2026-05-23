@@ -149,7 +149,7 @@ export default function Services() {
               {/* Kolom 2 (Tengah): Deskripsi */}
               <div className="w-full lg:w-1/3 flex justify-start lg:justify-center lg:px-4">
                 <p
-                  className="text-xl leading-relaxed transition-colors duration-300 max-w-[280px]"
+                  className="text-xl leading-relaxed transition-colors duration-300 max-w-[280px] lg:max-w-[450px]"
                   style={{
                     color:
                       hoveredIndex === i ? "#0A0A0A" : "rgba(255,255,255,0.4)",
