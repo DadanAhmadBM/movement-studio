@@ -11,25 +11,25 @@ const projects = [
   },
   {
     name: "Pulse Band",
-    tags: ["Music", "Event"],
+    tags: ["Smartwacth", "Sport"],
     image: "/project-pulse-image.png",
     url: "https://pulse-staging-mv.vercel.app/",
   },
   {
     name: "Grander Builder",
-    tags: ["Film", "Production"],
+    tags: ["Construction", "Building"],
     image: "/project-grander-builder-image.png",
     url: "https://grandeur-builders.vercel.app/",
   },
   {
     name: "Nejtrip",
-    tags: ["Travel", "App"],
+    tags: ["Travel", "Staycation"],
     image: "/project-nejtrip-image.png",
     url: "https://www.nejtrip.com/",
   },
   {
     name: "Hi.tcg",
-    tags: ["Gaming", "E-commerce"],
+    tags: ["Gaming", "Hobby"],
     image: "/project-hitcg-image.png",
     url: "https://hi-tcg.vercel.app/",
   },
@@ -165,8 +165,8 @@ export default function OurWorks() {
           </motion.h2>
         </div>
 
-        {/* DESKTOP & TABLET CONTENT */}
-        <div className="hidden md:flex flex-col xl:flex-row items-start gap-12 xl:gap-[120px]">
+        {/* DESKTOP CONTENT */}
+        <div className="hidden lg:flex flex-col xl:flex-row items-start gap-12 xl:gap-[120px]">
           {/* IMAGE */}
           <motion.a
             href={projects[activeIndex].url}
@@ -228,6 +228,35 @@ export default function OurWorks() {
               );
             })}
           </motion.div>
+        </div>
+
+        {/* TABLET CONTENT */}
+        <div className="hidden md:grid lg:hidden grid-cols-3 gap-x-6 gap-y-10">
+          {projects.map((project, i) => (
+            <motion.a 
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={project.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 + (i * 0.1) }}
+              className="flex flex-col"
+            >
+              <div className="w-full aspect-square rounded-[8px] overflow-hidden bg-[#141414] mb-4 relative">
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  className="w-full h-full object-cover"
+                  draggable={false}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+              </div>
+              <h3 className="text-white font-medium text-[18px] leading-tight">
+                {project.name}
+              </h3>
+            </motion.a>
+          ))}
         </div>
 
         {/* MOBILE CONTENT */}
