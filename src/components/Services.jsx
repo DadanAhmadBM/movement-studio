@@ -1,28 +1,29 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 const services = [
   {
     title: "Landing Page",
     description:
       "Convert visitors into customers with high-performing, one-page websites designed to capture attention and drive action. Ideal for campaigns, product launches, or limited offers.",
-    image: "/landing-page-image.png",
+    lottie: "/lotties/lottie-landing-page.json",
   },
   {
     title: "Business Website",
     description:
       "Establish trust and authority with a robust, multi-page digital presence. Built for companies looking to showcase their services, values, and portfolio professionally.",
-    image: "/business-website-image.png",
+    lottie: "/lotties/lottie-business-website.json",
   },
   {
     title: "Custom Web App",
     description:
       "Complex problems need elegant solutions. We build highly interactive, scalable, and data-driven web applications tailored to your specific operational workflows.",
-    image: "/custom-website-image.png",
+    lottie: "/lotties/lottie-custom-web-app.json",
   },
 ];
 
-// --- KOMPONEN SLOT MACHINE TEXT ---
+// --- KOMPONEN SLOT MACHINE TEXT (Tetap Sama) ---
 const CasinoText = ({ text, isActive, isFaded }) => {
   return (
     <motion.span
@@ -39,7 +40,7 @@ const CasinoText = ({ text, isActive, isFaded }) => {
     >
       {text.split("").map((char, i) => (
         <span key={i} className="relative inline-block whitespace-pre">
-          {/* LAPISAN 1: Huruf Asli (Keluar ke atas) */}
+          {/* LAPISAN 1: Huruf Asli */}
           <motion.span
             className="inline-block"
             animate={{ y: isActive ? "-100%" : "0%" }}
@@ -52,7 +53,7 @@ const CasinoText = ({ text, isActive, isFaded }) => {
             {char}
           </motion.span>
 
-          {/* LAPISAN 2: Huruf Kloningan (Masuk dari bawah) */}
+          {/* LAPISAN 2: Huruf Kloningan */}
           <motion.span
             className="absolute left-0 top-0 inline-block text-black"
             initial={{ y: "100%" }}
@@ -74,12 +75,10 @@ const CasinoText = ({ text, isActive, isFaded }) => {
 export default function Services() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  // Inisialisasi state menjadi 0 agar "Landing Page" aktif secara default
   const [hoveredIndex, setHoveredIndex] = useState(0);
 
   return (
     <section id="services" ref={ref} className="w-full py-16 md:py-24 bg-[#0A0A0A]">
-      {/* DIUBAH: Menggunakan flex-col dan items-start agar tersusun atas-bawah dan rata kiri */}
       <div className="flex flex-col items-start w-full px-6 md:px-16 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -99,7 +98,6 @@ export default function Services() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1 }}
-          /* DIUBAH: text-right dihapus, teks sekarang otomatis sejajar kiri di bawah tombol */
           className="text-white font-medium leading-tight max-w-full"
           style={{ fontSize: "clamp(28px, 2.5vw, 40px)" }}
         >
@@ -128,7 +126,7 @@ export default function Services() {
             }}
           >
             <div className="flex flex-col lg:flex-row lg:items-center px-6 md:px-16 py-8 lg:py-10 w-full h-full relative z-10 gap-4 lg:gap-0">
-              {/* Kolom 1 (Kiri): Judul dengan Animasi Slot Machine */}
+              {/* Kolom 1 (Kiri): Judul */}
               <div className="w-full lg:w-1/3 flex justify-start pr-4">
                 <h3
                   className="font-bold leading-none"
@@ -164,7 +162,7 @@ export default function Services() {
               </div>
             </div>
 
-            {/* Gambar Placeholder (Sembunyikan di Mobile & Tablet) */}
+            {/* Animasi Lottie (Sembunyikan di Mobile & Tablet) */}
             <div className="hidden lg:block absolute right-40 top-1/2 -translate-y-1/2 z-50 pointer-events-none">
               <AnimatePresence>
                 {hoveredIndex === i && (
@@ -176,12 +174,14 @@ export default function Services() {
                       opacity: { duration: 0.3 },
                       y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
                     }}
-                    className="w-[260px] h-[270px] rounded-[12px] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.4)]"
+                    className="w-[200px] h-[250px] rounded-[12px] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.4)]"
                   >
-                    <img
-                      src={svc.image}
-                      alt={svc.title}
-                      className="w-full h-full object-cover"
+                    {/* 3. GANTI TAG <img> DENGAN <Player> */}
+                    <Player
+                      autoplay
+                      loop
+                      src={svc.lottie}
+                      style={{ width: "100%", height: "100%" }}
                     />
                   </motion.div>
                 )}
