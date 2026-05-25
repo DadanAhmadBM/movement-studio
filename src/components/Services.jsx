@@ -74,11 +74,18 @@ const CasinoText = ({ text, isActive, isFaded }) => {
 
 export default function Services() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, amount: 0.2, margin: "0px" });
   const [hoveredIndex, setHoveredIndex] = useState(0);
 
   return (
-    <section id="services" ref={ref} className="w-full py-16 md:py-24 bg-[#0A0A0A]">
+    <motion.section
+      id="services"
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 1.5, ease: "easeOut" }}
+      className="w-full py-16 md:py-24 bg-[#0A0A0A]"
+    >
       <div className="flex flex-col items-start w-full px-6 md:px-16 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -179,7 +186,8 @@ export default function Services() {
                     {/* 3. GANTI TAG <img> DENGAN <Player> */}
                     <Player
                       autoplay
-                      loop
+                      loop={false}
+                      keepLastFrame={true}
                       src={svc.lottie}
                       style={{ width: "100%", height: "100%" }}
                     />
@@ -194,6 +202,6 @@ export default function Services() {
           style={{ borderColor: "rgba(255,255,255,0.07)" }}
         />
       </div>
-    </section>
+    </motion.section>
   );
 }
