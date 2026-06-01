@@ -142,10 +142,9 @@ export default function Services() {
               {/* Kolom 1 (Kiri): Judul */}
               <div className="w-full md:w-auto lg:w-1/3 flex justify-start md:justify-center lg:justify-start pr-4 md:pr-0 lg:pr-4">
                 <h3
-                  className="font-bold leading-none text-[clamp(28px,4.5vw,64px)] md:text-[clamp(24px,3.5vw,38px)] lg:text-[clamp(28px,4.5vw,64px)]"
+                  className="font-bold text-[clamp(28px,4.5vw,64px)] md:text-[clamp(24px,3.5vw,38px)] lg:text-[clamp(28px,4.5vw,64px)] leading-[1.4] md:leading-[1.15] lg:leading-[1.4]"
                   style={{
                     letterSpacing: "-0.02em",
-                    lineHeight: "1.4",
                   }}
                 >
                   <CasinoText

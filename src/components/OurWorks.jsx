@@ -39,6 +39,18 @@ const projects = [
     image: "/project-aurahome-image.png",
     url: "https://dev-aurahome.vercel.app/",
   },
+  {
+    name: "L'allure",
+    tags: ["Fashion", "Life Style"],
+    image: "/project-lallure-image.png",
+    url: "https://luxury-fashion-website.vercel.app/",
+  },
+  {
+    name: "Yugen Restaurant",
+    tags: ["Restaurant", "Japanese Food"],
+    image: "/project-yugen-image.png",
+    url: "https://yugen-restaurant-landing-page.vercel.app/",
+  },
 ];
 
 const CasinoText = ({ text, isActive, isFaded }) => {
@@ -195,7 +207,12 @@ export default function OurWorks() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.3 }}
-            className="flex flex-col justify-start"
+            className="flex flex-col justify-start overflow-y-auto pr-2"
+            style={{
+              maxHeight: "calc(6 * (clamp(36px, 4vw, 56px) * 1.3 + 8px))",
+              scrollbarWidth: "thin",
+              scrollbarColor: "#C8F04E #1a1a1a",
+            }}
           >
             {projects.map((project, i) => {
               const isActive = hoveredIndex === i;
@@ -212,7 +229,7 @@ export default function OurWorks() {
                     setActiveIndex(i);
                   }}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  className="text-left font-medium block mb-2 will-change-transform"
+                  className="text-left font-medium block mb-2 will-change-transform shrink-0"
                   style={{
                     fontSize: "clamp(36px, 4vw, 56px)",
                     letterSpacing: "-0.03em",
