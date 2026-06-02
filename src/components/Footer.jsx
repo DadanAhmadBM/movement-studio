@@ -60,7 +60,7 @@ export default function Footer() {
             {['FIVERR', 'INSTAGRAM'].map((link) => (
               <a
                 key={link}
-                href="#"
+                href="https://www.instagram.com/movementspaces?igsh=ZHBqbm1neWZqczdo"
                 className="font-mono text-white/60 text-xs font-semibold tracking-widest hover:text-[#C8F04E] transition-colors duration-200"
               >
                 {link}

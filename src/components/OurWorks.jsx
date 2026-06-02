@@ -51,6 +51,12 @@ const projects = [
     image: "/project-yugen-image.png",
     url: "https://yugen-restaurant-landing-page.vercel.app/",
   },
+  {
+    name: "Pet Care",
+    tags: ["Grooming", "Hobby"],
+    image: "/project-petcare-image.png",
+    url: "https://pet-homecare.vercel.app/",
+  },
 ];
 
 const CasinoText = ({ text, isActive, isFaded }) => {
@@ -60,8 +66,8 @@ const CasinoText = ({ text, isActive, isFaded }) => {
         color: isActive
           ? "#C8F04E"
           : isFaded
-            ? "rgba(255,255,255,0.25)"
-            : "#FFFFFF",
+            ? "rgba(255,255,255,0.15)"
+            : "rgba(255,255,255,0.45)",
       }}
       transition={{ duration: 0.3 }}
       className="inline-flex overflow-hidden relative"
@@ -106,6 +112,7 @@ const CasinoText = ({ text, isActive, isFaded }) => {
 export default function OurWorks() {
   const ref = useRef(null);
   const imageRef = useRef(null);
+  const scrollListRef = useRef(null);
 
   const isInView = useInView(ref, {
     once: true,
@@ -114,6 +121,22 @@ export default function OurWorks() {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [scrollFade, setScrollFade] = useState({ top: 0, bottom: 1 });
+
+  // Track scroll position for dynamic fade masks
+  const handleListScroll = () => {
+    const el = scrollListRef.current;
+    if (!el) return;
+    const { scrollTop, scrollHeight, clientHeight } = el;
+    const maxScroll = scrollHeight - clientHeight;
+    if (maxScroll <= 0) {
+      setScrollFade({ top: 0, bottom: 0 });
+      return;
+    }
+    const topRatio = Math.min(scrollTop / 80, 1);
+    const bottomRatio = Math.min((maxScroll - scrollTop) / 80, 1);
+    setScrollFade({ top: topRatio, bottom: bottomRatio });
+  };
 
   // Smooth cinematic image transition
   useEffect(() => {
@@ -207,43 +230,51 @@ export default function OurWorks() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.3 }}
-            className="flex flex-col justify-start overflow-y-auto pr-2"
-            style={{
-              maxHeight: "calc(6 * (clamp(36px, 4vw, 56px) * 1.3 + 8px))",
-              scrollbarWidth: "thin",
-              scrollbarColor: "#C8F04E #1a1a1a",
-            }}
+            className="relative flex-1"
           >
-            {projects.map((project, i) => {
-              const isActive = hoveredIndex === i;
-              const isFaded = hoveredIndex !== null && hoveredIndex !== i;
+            <div
+              ref={scrollListRef}
+              onScroll={handleListScroll}
+              className="flex flex-col justify-start overflow-y-auto pr-2"
+              style={{
+                maxHeight: "calc(6 * (clamp(36px, 4vw, 56px) * 1.3 + 8px))",
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+                WebkitMaskImage: `linear-gradient(to bottom, transparent, black ${scrollFade.top * 15}%, black ${100 - scrollFade.bottom * 40}%, transparent)`,
+                maskImage: `linear-gradient(to bottom, transparent, black ${scrollFade.top * 15}%, black ${100 - scrollFade.bottom * 40}%, transparent)`,
+              }}
+            >
+              {projects.map((project, i) => {
+                const isActive = hoveredIndex === i;
+                const isFaded = hoveredIndex !== null && hoveredIndex !== i;
 
-              return (
-                <a
-                  key={project.name}
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onMouseEnter={() => {
-                    setHoveredIndex(i);
-                    setActiveIndex(i);
-                  }}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  className="text-left font-medium block mb-2 will-change-transform shrink-0"
-                  style={{
-                    fontSize: "clamp(36px, 4vw, 56px)",
-                    letterSpacing: "-0.03em",
-                    lineHeight: "1.3",
-                  }}
-                >
-                  <CasinoText
-                    text={project.name}
-                    isActive={isActive}
-                    isFaded={isFaded}
-                  />
-                </a>
-              );
-            })}
+                return (
+                  <a
+                    key={project.name}
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onMouseEnter={() => {
+                      setHoveredIndex(i);
+                      setActiveIndex(i);
+                    }}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    className="text-left font-medium block mb-2 will-change-transform shrink-0"
+                    style={{
+                      fontSize: "clamp(36px, 4vw, 56px)",
+                      letterSpacing: "-0.03em",
+                      lineHeight: "1.3",
+                    }}
+                  >
+                    <CasinoText
+                      text={project.name}
+                      isActive={isActive}
+                      isFaded={isFaded}
+                    />
+                  </a>
+                );
+              })}
+            </div>
           </motion.div>
         </div>
 
