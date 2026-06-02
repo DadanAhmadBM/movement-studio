@@ -180,7 +180,7 @@ export default function Services() {
                 <div className="w-[200px] lg:w-[260px]" />
                 
                 {/* Animasi Lottie */}
-                <div className="absolute right-8 lg:right-24 top-1/2 -translate-y-1/2 z-50 pointer-events-none">
+                <div className="absolute right-12 lg:right-32 top-1/2 -translate-y-1/2 z-50 pointer-events-none">
                   <AnimatePresence>
                     {hoveredIndex === i && (
                       <motion.div
