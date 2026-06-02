@@ -237,7 +237,7 @@ export default function OurWorks() {
               onScroll={handleListScroll}
               className="flex flex-col justify-start overflow-y-auto pr-2"
               style={{
-                maxHeight: "calc(6 * (clamp(36px, 4vw, 56px) * 1.3 + 8px))",
+                maxHeight: "calc(7 * (clamp(36px, 4vw, 56px) * 1.3 + 8px))",
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
                 WebkitMaskImage: `linear-gradient(to bottom, transparent, black ${scrollFade.top * 15}%, black ${100 - scrollFade.bottom * 40}%, transparent)`,
